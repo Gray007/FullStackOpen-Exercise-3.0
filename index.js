@@ -31,10 +31,22 @@ app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
+app.get('/info', (request, response) => {
+  // console.log(request.headers)
+  // console.log(persons.length)
+  // console.log(new Date())
+  response.send(
+    `<h3>Phonebook has info for ${persons.length} people</h3>
+    <p>${new Date()}</p>`
+    )
+})
+
 app.get('/api/persons', (request, response) => {
   // console.log(request.headers)
   response.json(persons)
 })
+
+
 
 const PORT = 3001
 app.listen(PORT, () => {
