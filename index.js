@@ -60,10 +60,15 @@ const generateId = () => {
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
+  const duplicateName = persons.some(person => person.name === body.name)
   
   if (!body.name || !body.number) {
-    return response.status(400).json({
+    return response.status(406).json({
       error: 'content missing'
+    })
+  } else if (duplicateName) {
+    return response.status(409).json({
+      error: 'name must be unique'
     })
   }
 
