@@ -4,4 +4,13 @@ GET http://localhost:3001/api/persons
 GET http://localhost:3001/api/persons/5899
 
 ###
+POST http://localhost:3001/api/persons
+Content-Type: application/json 
+
+{ 
+    "name": "Sneppy the bagel",
+    "number": "39-777"
+}
+
+###
 DELETE http://localhost:3001/api/persons/1

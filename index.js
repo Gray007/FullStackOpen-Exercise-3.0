@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-// app.use(express.json())
+app.use(express.json())
 
 let persons = [
     { 
@@ -27,14 +27,10 @@ let persons = [
 ]
 
 app.get('/', (request, response) => {
-  // console.log(request.headers)
   response.send('<h1>Hello World!</h1>')
 })
 
 app.get('/info', (request, response) => {
-  // console.log(request.headers)
-  // console.log(persons.length)
-  // console.log(new Date())
   response.send(
     `<h3>Phonebook has info for ${persons.length} people</h3>
     <p>${new Date()}</p>`
@@ -42,7 +38,6 @@ app.get('/info', (request, response) => {
 })
 
 app.get('/api/persons', (request, response) => {
-  // console.log(request.headers)
   response.json(persons)
 })
 
@@ -55,6 +50,32 @@ app.get('/api/persons/:id', (request, response) => {
   } else {
     response.status(204).end()
   }
+})
+
+const generateId = () => {
+  const maxId = 10000
+  let randomId = Math.floor(Math.random() * maxId)
+  return randomId
+}
+
+app.post('/api/persons', (request, response) => {
+  const body = request.body
+  
+  if (!body.name || !body.number) {
+    return response.status(400).json({
+      error: 'content missing'
+    })
+  }
+
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number,
+  }
+
+  persons = persons.concat(person)
+
+  response.json(person)
 })
 
 app.delete('/api/persons/:id', (request, response) => {
