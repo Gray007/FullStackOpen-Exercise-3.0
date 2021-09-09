@@ -14,3 +14,22 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3001/api/persons/1
+
+###
+GET https://nameless-sands-54228.herokuapp.com/api/persons
+
+###
+GET https://nameless-sands-54228.herokuapp.com/api/persons/5899
+
+###
+POST https://nameless-sands-54228.herokuapp.com/api/persons
+Content-Type: application/json 
+
+{ 
+    "name": "Sneppy the bagel",
+    "number": "38393-777"
+}
+
+###
+DELETE https://nameless-sands-54228.herokuapp.com/api/persons/1
+
