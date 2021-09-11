@@ -1,7 +1,7 @@
 GET http://localhost:3001/api/persons
 
 ###
-GET http://localhost:3001/api/persons/613b6cd04cf9b5b0e3e74fa8
+GET http://localhost:3001/api/persons/613cc81cfd20653c30e11e89
 
 ###
 POST http://localhost:3001/api/persons
@@ -13,10 +13,22 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/persons/613cc7dafd20653c30e11e8
+PUT http://localhost:3001/api/persons/613cc81cfd20653c30e11e89
+content-type: application/json
+
+{
+    "name": "Forever sneppy",
+    "number": "77-777"
+}
+
+###
+DELETE http://localhost:3001/api/persons/613ced9f5a6131f0065def8d
 
 ###
 GET http://localhost:3001/api/unknownendpoint
+
+
+
 
 ###
 GET https://nameless-sands-54228.herokuapp.com/api/persons
