@@ -8,7 +8,7 @@ POST http://localhost:3001/api/persons
 Content-Type: application/json 
 
 { 
-    "name": "Sneppy the bagel",
+    "name": "Sneppy again",
     "number": "38393-777"
 }
 
