@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/persons/1
+DELETE http://localhost:3001/api/persons/613cc7dafd20653c30e11e86
 
 ###
 GET https://nameless-sands-54228.herokuapp.com/api/persons
