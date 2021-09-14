@@ -12,10 +12,6 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms - 
 app.use(express.static('build'))
 app.use(express.json())
 
-// app.get('/', (request, response) => {
-//   response.send('<h1>Hello Helsinki!</h1>')
-// })
-
 morgan.token('body', function(req, res) {
   return JSON.stringify(req.body);
 });
@@ -41,14 +37,8 @@ app.get('/api/persons/:id', (request, response) => {
   })
 })
 
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
   const body = request.body
-  
-  if (!body.content === undefined) {
-    return response.status(400).json({
-      error: 'content missing'
-    })
-  }
 
   const person = new Person ({
     name: body.name,
@@ -56,13 +46,18 @@ app.post('/api/persons', (request, response) => {
     date: new Date(),
   })
 
-  person.save().then(savedPerson => {
-    response.json(savedPerson)
+  person
+    .save()
+    .then(savedPerson => savedPerson.toJSON())
+    .then(savedAndFormattedPerson => {
+      response.json(savedAndFormattedPerson)
+    })
+    .catch(error => next(error))
   })
-})
 
 app.put('/api/persons/:id', (request, response, next) => {
   const body = request.body
+  
   const person = {
     name: body.name,
     number: body.number,
@@ -94,7 +89,9 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
-  } 
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+  }
 
   next(error)
 }

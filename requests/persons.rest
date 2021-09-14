@@ -11,8 +11,8 @@ POST http://localhost:3001/api/persons
 Content-Type: application/json 
 
 { 
-    "name": "Sneppy again",
-    "number": "38393-777"
+    "name": "Sneppy not the Bagel",
+    "number": "7777"
 }
 
 ###
@@ -20,8 +20,8 @@ PUT http://localhost:3001/api/persons/613cc81cfd20653c30e11e89
 content-type: application/json
 
 {
-    "name": "Forever sneppy",
-    "number": "77-777"
+    "name": "More sneppy",
+    "number": "7777"
 }
 
 ###
