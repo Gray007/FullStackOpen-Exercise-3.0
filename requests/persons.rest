@@ -49,5 +49,17 @@ Content-Type: application/json
 }
 
 ###
+PUT https://nameless-sands-54228.herokuapp.com/api/persons/613cc81cfd20653c30e11e89
+content-type: application/json
+
+{
+    "name": "More sneppy",
+    "number": "7777"
+}
+
+###
 DELETE https://nameless-sands-54228.herokuapp.com/api/persons/1
 
+
+###
+GET https://nameless-sands-54228.herokuapp.com/api/unknownendpoint
